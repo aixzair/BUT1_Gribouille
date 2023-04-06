@@ -10,10 +10,10 @@ public class Dialogues {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static boolean confirmation() {
+	public static boolean confirmation(String message) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
     	
-    	alert.setContentText("Voulez-vous quitter l'application ?");
+    	alert.setContentText(message);
     	alert.getButtonTypes().clear();
     	alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
     	
