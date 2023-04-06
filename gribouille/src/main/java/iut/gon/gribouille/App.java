@@ -20,6 +20,12 @@ public class App extends Application {
         scene = new Scene(loadFXML("gribouille"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnCloseRequest(event -> {
+        	if (! Dialogues.confirmation()) {
+        		event.consume();
+        	}
+        });
     }
 
     static void setRoot(String fxml) throws IOException {
