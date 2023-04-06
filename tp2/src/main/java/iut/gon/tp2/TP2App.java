@@ -45,7 +45,15 @@ public class TP2App extends Application {
   /** Prépare la fenêtre pour demander confirmation avant fermeture */
   private void prepareFermeture(Stage stage) {
     stage.setOnCloseRequest(event -> {
-      //TODO confirmer ou consommer l'événement
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	
+    	alert.setContentText("Voulez-vous quitter l'application ?");
+    	alert.getButtonTypes().clear();
+    	alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+    	
+    	if (alert.showAndWait().orElse(ButtonType.YES) != ButtonType.YES) {
+    		event.consume();
+    	}
     });
   }
 
@@ -62,7 +70,6 @@ public class TP2App extends Application {
   private void onAjouteTout(ActionEvent actionEvent) {
     droite.getItems().addAll(gauche.getItems());
     gauche.getItems().clear();
-    //TODO active/désactive les boutons
   }
 
   /** Ajoute tous les éléments de droite dans la liste de gauche
