@@ -61,7 +61,10 @@ public class App extends Application {
     		MouseEvent.MOUSE_PRESSED,
     		event -> {
     			 if (event.getButton() == MouseButton.SECONDARY) {
-    				 // pane.setPadding(new Circle(5));
+    				Circle c = new Circle(event.getX(), event.getY(), 5);
+    	    		c.setMouseTransparent(true);
+    	    		pane.getChildren().add(c);
+    	    		event.consume();
     			 }
     		}
         );
