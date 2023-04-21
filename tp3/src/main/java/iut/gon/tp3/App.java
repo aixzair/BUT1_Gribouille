@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * JavaFX App
+ * J'ai du faire le tp3 sans l'aide de prof pour raison médical
  */
 public class App extends Application {
 

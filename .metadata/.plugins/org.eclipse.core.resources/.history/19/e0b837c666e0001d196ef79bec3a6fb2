@@ -1,0 +1,39 @@
+package iut.gon.tp3;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+
+public class GrilleController implements Initializable {
+	private @FXML GridPane grille;
+	private int taille_tab = 3;
+	private Label[][] labels = new Label[taille_tab][taille_tab];
+	
+	public GrilleController() {
+		
+	}
+	
+	public void initialize(URL url, ResourceBundle resource) {
+		grille.setStyle("-fx-background-color: seashell");
+		
+		for (int lg = 0; lg < taille_tab; lg++) {
+			for (int col = 0; col < taille_tab; col++) {
+				labels[lg][col] = new Label(String.format("L%dC%d", lg, col));
+				
+				labels[lg][col].addEventHandler(
+					MouseEvent.MOUSE_CLICKED,
+					event -> {
+						grille.getCellBounds(col, lg);  //setCase(lg, col, "bonjour");
+					}
+				);
+				
+				grille.add(labels[lg][col], lg, col);
+			}
+		}
+	}
+}

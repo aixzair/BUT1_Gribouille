@@ -1,0 +1,29 @@
+package iut.gon.tp3;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+
+public class GrilleController implements Initializable {
+	private @FXML GridPane grille;
+	private int t_tab = 3;
+	private Label[][] labels = new Label[t_tab][t_tab];
+	
+	public GrilleController() {
+		
+	}
+	
+	public void initialize(URL url, ResourceBundle resource) {
+		grille.setStyle("-fx-background-color: seashell");
+		
+		for (int i = 0; i < t_tab; i++) {
+			for (int j = 0; j < t_tab; j++) {
+				
+			}
+		}
+	}
+}
