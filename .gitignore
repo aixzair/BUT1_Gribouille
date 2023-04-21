@@ -5,9 +5,7 @@
 *.class
 
 **/.idea
-**/.metadata
 **/.recommenders
 .DS_Store
-**/.project
-**/.classpath
-**/.settings
+**/.metadata/.lock
+
