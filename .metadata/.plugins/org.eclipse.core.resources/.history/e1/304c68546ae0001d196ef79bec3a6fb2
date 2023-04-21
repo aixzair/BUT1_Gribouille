@@ -1,0 +1,10 @@
+package iut.gon.tp3;
+
+public class GrilleModel {
+	private SimpleStringProperty[][] grilleTab;
+	
+	public GrilleModel() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

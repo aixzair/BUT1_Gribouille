@@ -1,0 +1,11 @@
+package iut.gon.tp3;
+
+public class GrilleModel {
+	private int taille_tab = 3;
+	private String[][] messages = new String[3][3];
+	
+	public GrilleModel() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
