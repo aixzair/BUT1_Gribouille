@@ -1,0 +1,12 @@
+package iut.gon.tp3;
+
+import javafx.fxml.FXML;
+import javafx.scene.layout.GridPane;
+
+public class GrilleController {
+	private @FXML GridPane grille;
+	
+	public GrilleController() {
+		
+	}
+}

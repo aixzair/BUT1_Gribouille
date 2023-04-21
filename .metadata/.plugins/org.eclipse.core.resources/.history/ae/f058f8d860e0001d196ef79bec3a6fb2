@@ -1,0 +1,9 @@
+package iut.gon.tp3;
+
+public class GrilleController {
+	private @FXML GridPane grille;
+	
+	public GrilleController() {
+		
+	}
+}
