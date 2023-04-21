@@ -2,6 +2,6 @@ module tp3 {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens tp3 to javafx.fxml;
-    exports tp3;
+    opens iut.gon.tp3 to javafx.fxml;
+    exports iut.gon.tp3;
 }
