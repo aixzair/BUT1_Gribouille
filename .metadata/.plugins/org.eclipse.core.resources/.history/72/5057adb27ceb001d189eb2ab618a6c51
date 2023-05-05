@@ -28,16 +28,17 @@ public class App extends Application {
     	
         stage.setScene(scene);
         stage.show();
+        
         stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
         	switch (event.getText()) {
         	case "1" : modele.setCase(0,0, "Touche 1"); break;
-        	case "2" : modele.setCase(0,1, "Touche 2"); break;
-        	case "3" : modele.setCase(0,2, "Touche 3"); break;
-        	case "4" : modele.setCase(1,0, "Touche 4"); break;
+        	case "2" : modele.setCase(1,0, "Touche 2"); break;
+        	case "3" : modele.setCase(2,0, "Touche 3"); break;
+        	case "4" : modele.setCase(0,1, "Touche 4"); break;
         	case "5" : modele.setCase(1,1, "Touche 5"); break;
-        	case "6" : modele.setCase(1,2, "Touche 6"); break;
-        	case "7" : modele.setCase(2,0, "Touche 7"); break;
-        	case "8" : modele.setCase(2,1, "Touche 8"); break;
+        	case "6" : modele.setCase(2,1, "Touche 6"); break;
+        	case "7" : modele.setCase(0,2, "Touche 7"); break;
+        	case "8" : modele.setCase(1,2, "Touche 8"); break;
         	case "9" : modele.setCase(2,2, "Touche 9"); break;
         	}
     	});
