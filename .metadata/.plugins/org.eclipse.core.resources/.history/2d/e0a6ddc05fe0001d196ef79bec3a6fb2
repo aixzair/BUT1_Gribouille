@@ -1,7 +1,0 @@
-package iut.gon.tp3;
-
-import Application;
-
-public class GrilleController extends Application {
-
-}

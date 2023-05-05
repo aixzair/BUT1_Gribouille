@@ -10,15 +10,20 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
-public class GrilleController implements Initializable {
+public class GrilleController
+implements Initializable {
 	private @FXML GridPane grille;
+	
 	private int taille_tab = 3;
 	private Label[][] labels = new Label[taille_tab][taille_tab];
 	
-	public GrilleController() {
-		
+	private GrilleModel model;
+	
+	public GrilleController(GrilleModel model) {
+		this.model = model;
 	}
 	
+	@Override
 	public void initialize(URL url, ResourceBundle resource) {
 		grille.setStyle("-fx-background-color: seashell");
 		
@@ -27,14 +32,15 @@ public class GrilleController implements Initializable {
 				int eventLg = lg;
 				int eventCol = col;
 				
-				labels[col][lg] = new Label(String.format("L%dC%d", lg, col));
-				labels[col][lg].setMaxSize(1000, 1000);
-				labels[col][lg].setAlignment(Pos.CENTER);
-				labels[col][lg].addEventHandler(
+				this.labels[col][lg] = new Label(this.model.getCase(lg, col).getValue());
+				this.labels[col][lg].setMaxSize(1000, 1000);
+				this.labels[col][lg].setAlignment(Pos.CENTER);
+				
+				this.labels[eventCol][eventLg].addEventHandler(
 					MouseEvent.MOUSE_CLICKED,
 					event -> {
-						labels[eventLg][eventCol] = new Label("bonjour");
-						grille.add(labels[eventLg][eventCol], eventLg, eventCol);
+						this.model.setCase(eventLg, eventCol, "bonjour");
+						this.labels[eventCol][eventLg].setText(this.model.getCase(eventLg, eventCol).getValue());
 					}
 				);
 				
