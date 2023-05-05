@@ -33,7 +33,7 @@ implements Initializable {
 				int eventCol = col;
 				
 				this.labels[col][lg] = new Label();
-				this.labels[col][lg].textProperty().bind(model.caseProperty(lg, col));
+				this.labels[col][lg].setText(this.model.getCase(lg, col).getValue());
 				this.labels[col][lg].setMaxSize(1000, 1000);
 				this.labels[col][lg].setAlignment(Pos.CENTER);
 				
@@ -41,7 +41,7 @@ implements Initializable {
 					MouseEvent.MOUSE_CLICKED,
 					event -> {
 						this.model.setCase(eventLg, eventCol, "bonjour");
-						this.labels[eventCol][eventLg].setText(this.model.getCase(eventLg, eventCol));
+						this.labels[eventCol][eventLg].setText(this.model.getCase(eventLg, eventCol).getValue());
 					}
 				);
 				

@@ -30,7 +30,6 @@ public class App extends Application {
         stage.show();
         stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
         	switch (event.getText()) {
-        	case "a" : modele.setCase(0,0, "test"); break;
         	case "1" : modele.setCase(0,0, "Touche 1"); break;
         	case "2" : modele.setCase(0,1, "Touche 2"); break;
         	case "3" : modele.setCase(0,2, "Touche 3"); break;

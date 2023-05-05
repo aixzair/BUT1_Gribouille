@@ -32,7 +32,7 @@ implements Initializable {
 				int eventLg = lg;
 				int eventCol = col;
 				
-				this.labels[col][lg] = new Label();
+				this.labels[col][lg] = new Label(); // this.model.getCase(lg, col)
 				this.labels[col][lg].textProperty().bind(model.caseProperty(lg, col));
 				this.labels[col][lg].setMaxSize(1000, 1000);
 				this.labels[col][lg].setAlignment(Pos.CENTER);

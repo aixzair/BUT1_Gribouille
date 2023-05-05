@@ -11,22 +11,19 @@ public class GrilleModel {
 		
 		for (int lg = 0; lg < this.taille_tab; lg++) {
 			for (int col = 0; col < this.taille_tab; col++) {
-				this.cases[lg][col] = new SimpleStringProperty();
-				this.cases[lg][col].setValue(String.format("L%dC%d", lg, col));
+				this.cases[col][lg] = new SimpleStringProperty();
+				this.cases[col][lg].setValue(String.format("L%dC%d", lg, col));
 			}
 		}
 	}
 	
-	public String getCase(int lg, int col) {
-		return this.cases[lg][col].getValue();
+	@SuppressWarnings("exports")
+	public SimpleStringProperty getCase(int lg, int col) {
+		return this.cases[col][lg];
 	}
 	
 	public void setCase(int lg, int col, String texte) {
-		this.cases[lg][col].setValue(texte);
+		this.cases[col][lg].setValue(texte);
 	}
-	
-	SimpleStringProperty caseProperty(int lg, int col) {
-        return this.cases[lg][col];
-    }
 
 }

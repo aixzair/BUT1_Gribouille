@@ -26,7 +26,7 @@ public class GrilleModel {
 	}
 	
 	SimpleStringProperty caseProperty(int lg, int col) {
-        return this.cases[lg][col];
+        return this.cases[col][lg];
     }
 
 }
