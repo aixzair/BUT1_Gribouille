@@ -1,9 +1,0 @@
-package iut.gon.tp3;
-
-public class GrilleModel {
-
-	public GrilleModel() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
