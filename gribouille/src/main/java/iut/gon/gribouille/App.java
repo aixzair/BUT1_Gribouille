@@ -21,19 +21,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("gribouille"), 640, 480);
+    	ControleurDessin dessinCtl = new ControleurDessin();
+    	
+        scene = new Scene(loadFXML("dessin", dessinCtl), 640, 480);
+        
         stage.setScene(scene);
-        stage.show();
         
-        stage.setOnCloseRequest(event -> {
-        	if (! Dialogues.confirmation("Voulez-vous quitter l'application ?")) {
-        		event.consume();
-        	}
-        });
+        Canvas canvas = (Canvas) scene.lookup("dessinCanvas");
         
-        Canvas dessin = (Canvas) scene.lookup("Canvas");
-        
-        dessin.addEventHandler(
+        canvas.addEventHandler(
     		MouseEvent.MOUSE_PRESSED,
     		event -> {
     			 this.prevX = event.getSceneX();
@@ -41,10 +37,10 @@ public class App extends Application {
     		}
         );
         
-        dessin.addEventHandler(
+        canvas.addEventHandler(
     		MouseEvent.MOUSE_DRAGGED,
     		event -> {
-    			dessin.getGraphicsContext2D().strokeLine(
+    			canvas.getGraphicsContext2D().strokeLine(
     					prevX,
     					prevY,
     					event.getX(),
@@ -52,14 +48,23 @@ public class App extends Application {
     			);
     		}
         );
+        
+        
+        stage.setOnCloseRequest(event -> {
+        	if (! Dialogues.confirmation("Voulez-vous quitter l'application ?")) {
+        		event.consume();
+        	}
+        });
+        stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        scene.setRoot(loadFXML(fxml, null));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    private static Parent loadFXML(String fxml, Object controleur) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        fxmlLoader.setController(controleur);
         return fxmlLoader.load();
     }
 
