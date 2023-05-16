@@ -5,6 +5,8 @@ import java.util.List;
 import iut.gon.modele.Dessin;
 import iut.gon.modele.Figure;
 import iut.gon.modele.Point;
+import iut.gon.modele.Trace;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -17,8 +19,8 @@ public class ControleurDessin {
     @FXML private Label sourisPosX;
     @FXML private Label sourisPosY;
     
-    private double prevX;
-    private double prevY;
+    private SimpleDoubleProperty prevX;
+    private SimpleDoubleProperty prevY;
     private Dessin dessin;
     
 	public ControleurDessin (Dessin _dessin) {
@@ -56,22 +58,38 @@ public class ControleurDessin {
 				}
 			}
 		});
+		
+		this.prevX = new SimpleDoubleProperty();
+		this.prevY = new SimpleDoubleProperty();
+		
+		this.sourisPosX.textProperty().bind(this.prevX.asString());
+		this.sourisPosY.textProperty().bind(this.prevY.asString());
 	}
 	
 	public void onMousePressed(MouseEvent event) {
-		this.prevX = event.getSceneX();
-		this.prevY = event.getSceneY();
+		this.prevX.set(event.getX());
+		this.prevY.set(event.getY());
+		
+		this.dessin.addFigure(new Trace(3, "noir", this.prevX.get(), this.prevY.get()));
 	}
 	
 	public void onMouseDragged(MouseEvent event) {
-		this.canvas.getGraphicsContext2D().strokeLine(
-				this.prevX,
-				this.prevY,
+		this.canvas .getGraphicsContext2D().strokeLine(
+				this.prevX.get(),
+				this.prevY.get(),
 				event.getX(),
 				event.getY()
 		);
 		
-		this.prevX = event.getSceneX();
-		this.prevY = event.getSceneY();
+		Figure figure = this.dessin.getFigures().get(this.dessin.getFigures().size()-1);
+		figure.addPoint(event.getX(), event.getY());
+		
+		this.prevX.set(event.getX());
+		this.prevY.set(event.getY());
+	}
+	
+	public void onMouseMoved(MouseEvent event) {
+		this.prevX.set(event.getX());
+		this.prevY.set(event.getY());
 	}
 }
