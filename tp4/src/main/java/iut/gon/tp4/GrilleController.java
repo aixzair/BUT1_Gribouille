@@ -22,24 +22,24 @@ import java.util.Scanner;
 public class GrilleController
 implements Initializable {
 
-  private GrilleModel modele;
-  private Scores table;
+    private GrilleModel modele;
+    private Label[][] contenu = new Label[3][3];
+    private Scores table;
 
-  public GrilleController(Scores score) {
-	  this.table = score;
-	  this.modele = new GrilleModel();
-  }
+    private @FXML MenusController menusController;
+    private @FXML GridPane grille;
+    private @FXML HBox statut;
+    private @FXML Label joueur;
 
-  private @FXML GridPane grille;
-  private @FXML HBox statut;
-  private @FXML Label joueur;
-
-  private Label[][] contenu = new Label[3][3];
-
+    public GrilleController(Scores score) {
+	    this.table = score;
+	    this.modele = new GrilleModel();
+    }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     grille.setStyle("-fx-background-color: seashell");
+    menusController.setParams(modele, table);
     
     for (int l = 0; l < 3; ++l)
     	for (int c = 0; c < 3; ++c) {
@@ -94,24 +94,6 @@ implements Initializable {
 	  afficherScore();
   }
 
-  @FXML
-  public void onMenuNouvelle(ActionEvent evt) {
-	  // ...
-  }
-    @FXML
-  	public void onMenuTable(ActionEvent evt)
-	throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(Morpion.class.getResource("table.fxml"));
-    	TableController controleur = fxmlLoader.getController();
-	  
-    	controleur.setScores(this.table);
-    	this.grille.getScene().setRoot(fxmlLoader.load());
-    }
-
-  @FXML
-  public void onMenuQuitter(ActionEvent evt) {
-    Platform.exit();
-  }
   
 	private void afficherScore() {
 		FXMLLoader fxmlLoader = new FXMLLoader(Morpion.class.getResource("table.fxml"));
