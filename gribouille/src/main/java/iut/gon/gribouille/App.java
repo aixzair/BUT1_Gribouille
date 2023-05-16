@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import iut.gon.modele.Dessin;
+
 /**
  * JavaFX App
  */
@@ -21,13 +23,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-    	ModeleDessin dessinMdl = new DessinModele();
+    	Dessin dessinMdl = new Dessin();
     	ControleurDessin dessinCtl = new ControleurDessin(dessinMdl);
     	
         scene = new Scene(loadFXML("dessin", dessinCtl), 640, 480);
         stage.setScene(scene);
         stage.setOnCloseRequest(event -> {
-        	if (! Dialogues.confirmation("Voulez-vous quitter l'application ?")) {
+        	if (!Dialogues.confirmation("Voulez-vous quitter l'application ?")) {
         		event.consume();
         	}
         });
