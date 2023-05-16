@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class GrilleController
 implements Initializable {
@@ -77,26 +78,50 @@ implements Initializable {
   }
 
   private void onGagne(String joueur) {
-    //TODO demander le nom du joueur
-    //TODO modifier scores
-    //TODO appeler la table des scores
+	  if (this.joueur != null) {
+		  TextInputDialog input = new TextInputDialog("Entrée votre nom");
+		  Optional<String> result = input.showAndWait();
+		  
+		  result.ifPresentOrElse(
+			name -> table.ajouteVictoire(name),
+			() -> table.ajouteVictoire(input.getDefaultValue())
+		  );
+
+	  } else {
+		  table.ajouteNulle();
+	  }
+	  
+	  afficherScore();
   }
 
   @FXML
   public void onMenuNouvelle(ActionEvent evt) {
 	  // ...
   }
-  @FXML
-  public void onMenuTable(ActionEvent evt) {
-	  FXMLLoader fxmlLoader = new FXMLLoader(Morpion.class.getResource("table.fxml"));
-	  TableController controleur = fxmlLoader.getController();
+    @FXML
+  	public void onMenuTable(ActionEvent evt)
+	throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(Morpion.class.getResource("table.fxml"));
+    	TableController controleur = fxmlLoader.getController();
 	  
-	  controleur.setScores(this.table);
-	  this.grille.getScene().setRoot(this.statut);
-  }
+    	controleur.setScores(this.table);
+    	this.grille.getScene().setRoot(fxmlLoader.load());
+    }
 
   @FXML
   public void onMenuQuitter(ActionEvent evt) {
     Platform.exit();
   }
+  
+	private void afficherScore() {
+		FXMLLoader fxmlLoader = new FXMLLoader(Morpion.class.getResource("table.fxml"));
+		
+		try {
+			grille.getScene().setRoot(fxmlLoader.load());
+			((TableController) fxmlLoader.getController()).setScores(table);
+			
+		} catch (IOException exception) {
+			exception.printStackTrace();
+		}
+	}
 }

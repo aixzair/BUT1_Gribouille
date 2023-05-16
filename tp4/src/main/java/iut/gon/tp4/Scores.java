@@ -28,6 +28,7 @@ public class Scores {
       ++victoires;
     }
   }
+  
   private ObservableList<Entree> scores;
   private int nulles;
 
