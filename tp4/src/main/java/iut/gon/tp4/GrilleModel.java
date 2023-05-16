@@ -22,6 +22,10 @@ public class GrilleModel {
   };
   public StringExpression texteJoueur = Bindings.when(joueurCourantX).then(JOUEUR_X).otherwise(JOUEUR_O);
 
+  public GrilleModel() {
+	  // ...
+  }
+  
   public StringProperty getCase(int lg, int col) { return contenu[lg][col]; }
 
   public void joueCase(int lg, int col) {
@@ -59,11 +63,15 @@ public class GrilleModel {
     return contenu[0][0].get()==joueur && contenu[1][1].get()==joueur && contenu[2][2].get()==joueur;
   }
   private boolean gagneDiago2(String joueur) {
-    return contenu[0][2].get()==joueur && contenu[1][1].get()==joueur && contenu[2][0].get()==joueur;
+    return contenu[0][2].get() == joueur
+    	&& contenu[1][1].get() == joueur
+    	&& contenu[2][0].get() == joueur;
   }
 
   private boolean gagneColonne(String joueur, int idx) {
-    return contenu[0][idx].get()==joueur && contenu[1][idx].get()==joueur && contenu[2][idx].get()==joueur;
+    return contenu[0][idx].get() == joueur
+    	&& contenu[1][idx].get() == joueur
+    	&& contenu[2][idx].get() == joueur;
   }
 
   private boolean gagneLigne(String joueur, int idx) {

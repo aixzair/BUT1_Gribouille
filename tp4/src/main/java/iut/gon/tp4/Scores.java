@@ -40,6 +40,7 @@ public class Scores {
   public void ajouteVictoire(String joueur) {
     for (ListIterator<Entree> iterator = scores.listIterator(); iterator.hasNext(); ) {
       Entree e = iterator.next();
+      
       if (e.joueur.equals(joueur)) {
         e.ajouteVictoire();
         iterator.set(e); // Pour modifier la liste

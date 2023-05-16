@@ -9,11 +9,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Morpion extends Application {
+	
   @Override
   public void start(Stage stage) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Morpion.class.getResource("grille.fxml"));
 
-    GrilleController controller = new GrilleController();
+    Scores score = new Scores();
+    GrilleController controller = new GrilleController(score);
     fxmlLoader.setController(controller);
     Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 
