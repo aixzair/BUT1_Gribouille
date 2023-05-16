@@ -21,35 +21,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-    	ControleurDessin dessinCtl = new ControleurDessin();
+    	ModeleDessin dessinMdl = new DessinModele();
+    	ControleurDessin dessinCtl = new ControleurDessin(dessinMdl);
     	
         scene = new Scene(loadFXML("dessin", dessinCtl), 640, 480);
-        
         stage.setScene(scene);
-        
-        Canvas canvas = (Canvas) scene.lookup("dessinCanvas");
-        
-        canvas.addEventHandler(
-    		MouseEvent.MOUSE_PRESSED,
-    		event -> {
-    			 this.prevX = event.getSceneX();
-    			 this.prevY = event.getSceneY();
-    		}
-        );
-        
-        canvas.addEventHandler(
-    		MouseEvent.MOUSE_DRAGGED,
-    		event -> {
-    			canvas.getGraphicsContext2D().strokeLine(
-    					prevX,
-    					prevY,
-    					event.getX(),
-    					event.getY()
-    			);
-    		}
-        );
-        
-        
         stage.setOnCloseRequest(event -> {
         	if (! Dialogues.confirmation("Voulez-vous quitter l'application ?")) {
         		event.consume();
