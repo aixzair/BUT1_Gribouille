@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class ControleurDessin {
+public class ControleurVieux {
 	@FXML private Pane pane;
     @FXML private Canvas canvas;
     @FXML private Label sourisPosX;
@@ -23,7 +23,7 @@ public class ControleurDessin {
     private SimpleDoubleProperty prevY;
     private Dessin dessin;
     
-	public ControleurDessin (Dessin _dessin) {
+	public ControleurVieux (Dessin _dessin) {
 		this.dessin = _dessin;
 	}
 	

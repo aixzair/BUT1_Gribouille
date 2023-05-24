@@ -3,4 +3,5 @@
     <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
     <fullyQualifiedTypeName name="javafx.scene.canvas.Canvas"/>
+    <fullyQualifiedTypeName name="iut.gon.modele.Dessin"/>
 </qualifiedTypeNameHistroy>
