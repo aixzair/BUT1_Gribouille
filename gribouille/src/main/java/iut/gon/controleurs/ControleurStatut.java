@@ -9,10 +9,15 @@ public class ControleurStatut {
 	@FXML private Label sourisPosX;
     @FXML private Label sourisPosY;
     @FXML private Label epaisseur;
+    @FXML private Label outil;
     @FXML private Label couleur;
 
 	public ControleurStatut() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void setParams(Controleur _controleur) {
+		this.controleur = _controleur;
 	}
 	
 	public Label getSourisPosX() {
@@ -26,13 +31,12 @@ public class ControleurStatut {
 	public Label getEpaisseur() {
 		return this.epaisseur;
 	}
+	
+	public Label getOutil() {
+		return this.outil;
+	}
 
 	public Label getCouleur() {
 		return this.couleur;
 	}
-
-	public void setParams(Controleur _controleur) {
-		this.controleur = _controleur;
-	}
-
 }
