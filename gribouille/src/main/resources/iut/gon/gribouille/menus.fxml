@@ -8,7 +8,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 
-<MenuBar fx:id="menus" fx:controller="iut.gon.controleurs.ControleurMenus" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<MenuBar fx:id="menus" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.gon.controleurs.ControleurMenus">
   <menus>
     <Menu mnemonicParsing="false" text="Dessin">
       <items>
@@ -38,12 +38,12 @@
                   <RadioMenuItem mnemonicParsing="false" text="9" toggleGroup="$epaisseur" />
                </items>
             </Menu>
-            <RadioMenuItem mnemonicParsing="false" text="Crayon">
+            <RadioMenuItem fx:id="crayon" mnemonicParsing="false" text="Crayon">
                <toggleGroup>
                   <ToggleGroup fx:id="outils" />
                </toggleGroup>
             </RadioMenuItem>
-            <RadioMenuItem mnemonicParsing="false" text="Étoile" toggleGroup="$outils" />
+            <RadioMenuItem fx:id="etoile" mnemonicParsing="false" text="Étoile" toggleGroup="$outils" />
       </items>
     </Menu>
     <Menu mnemonicParsing="false" text="Aide">

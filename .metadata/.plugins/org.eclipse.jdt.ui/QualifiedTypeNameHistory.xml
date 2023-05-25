@@ -7,6 +7,18 @@
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
     <fullyQualifiedTypeName name="javafx.event.Event"/>
-    <fullyQualifiedTypeName name="iut.gon.controleurs.Controleur"/>
+    <fullyQualifiedTypeName name="javafx.application.Platform"/>
+    <fullyQualifiedTypeName name="javafx.scene.input.MouseEvent"/>
+    <fullyQualifiedTypeName name="iut.gon.modele.Figure"/>
     <fullyQualifiedTypeName name="iut.gon.modele.Dessin"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="iut.gon.modele.Point"/>
+    <fullyQualifiedTypeName name="iut.gon.controleurs.Controleur"/>
+    <fullyQualifiedTypeName name="iut.gon.gribouille.Outils"/>
+    <fullyQualifiedTypeName name="iut.gon.gribouille.OutilCrayon"/>
+    <fullyQualifiedTypeName name="iut.gon.modele.Etoile"/>
+    <fullyQualifiedTypeName name="iut.gon.outils.OutilEtoile"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.RadioMenuItem"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
+    <fullyQualifiedTypeName name="javafx.beans.value.ChangeListener"/>
 </qualifiedTypeNameHistroy>

@@ -21,23 +21,29 @@ public class ControleurDessin {
 		// Vide.
 	}
 	
-	public void setParams(Controleur _controleur, Dessin _modele) {
-		this.controleur = _controleur;
-		this.modele = _modele;
-		
+	public void initialize() {
 		this.canvas.widthProperty().bind(this.pane.widthProperty());
 		this.canvas.heightProperty().bind(this.pane.heightProperty());
 		
+		this.dessine();
+	}
+	
+	public void setParams(Controleur _controleur, Dessin _modele) {
+		this.controleur = _controleur;
+		this.modele = _modele;
+	}
+	
+	public void dessine() {
 		this.canvas.widthProperty().addListener((objet) -> {
 			for (Figure figure: this.modele.getFigures()) {
 				List<Point> points = figure.getPoints();
 				
 				for (int i = 0; i < points.size() - 1; i++) {
 					this.canvas.getGraphicsContext2D().strokeLine(
-							points.get(i).getX(),
-							points.get(i).getY(),
-							points.get(i+1).getX(),
-							points.get(i+1).getY()
+						points.get(i).getX(),
+						points.get(i).getY(),
+						points.get(i+1).getX(),
+						points.get(i+1).getY()
 					);
 				}
 			}
@@ -48,10 +54,10 @@ public class ControleurDessin {
 				
 				for (int i = 0; i < points.size() - 1; i++) {
 					this.canvas.getGraphicsContext2D().strokeLine(
-							points.get(i).getX(),
-							points.get(i).getY(),
-							points.get(i+1).getX(),
-							points.get(i+1).getY()
+						points.get(i).getX(),
+						points.get(i).getY(),
+						points.get(i+1).getX(),
+						points.get(i+1).getY()
 					);
 				}
 			}
@@ -60,10 +66,10 @@ public class ControleurDessin {
 	
 	public void efface() {
 		this.canvas.getGraphicsContext2D().clearRect(
-			this.controleur.precX.doubleValue(),
-			this.controleur.precY.doubleValue(),
-			this.controleur.precX.doubleValue() + 1,
-			this.controleur.precY.doubleValue() + 1
+			0,
+			0,
+			this.modele.getFigures().size(),
+			this.modele.getFigures().get(0).getPoints().size()
 		);
 	}
 	
