@@ -60,10 +60,10 @@ public class ControleurDessin {
 	
 	public void efface() {
 		this.canvas.getGraphicsContext2D().clearRect(
-			this.controleur.prevX.doubleValue(),
-			this.controleur.prevY.doubleValue(),
-			this.controleur.prevX.doubleValue() + 1,
-			this.controleur.prevY.doubleValue() + 1
+			this.controleur.precX.doubleValue(),
+			this.controleur.precY.doubleValue(),
+			this.controleur.precX.doubleValue() + 1,
+			this.controleur.precY.doubleValue() + 1
 		);
 	}
 	

@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -19,8 +20,8 @@ public class Controleur {
 	private @FXML ControleurStatut statutController;
 	
 	public final Dessin dessin;
-	public final SimpleDoubleProperty prevX = new SimpleDoubleProperty();;
-	public final SimpleDoubleProperty prevY = new SimpleDoubleProperty();;
+	public final SimpleDoubleProperty precX = new SimpleDoubleProperty();;
+	public final SimpleDoubleProperty precY = new SimpleDoubleProperty();;
         
 	public final SimpleObjectProperty<Color> couleur = new SimpleObjectProperty<Color>(Color.BLACK);
 	public final SimpleIntegerProperty epaisseur = new SimpleIntegerProperty(1);
@@ -34,6 +35,11 @@ public class Controleur {
 		this.dessinController.setParams(this, this.dessin);
 		this.menusController.setParams(this);
 		this.statutController.setParams(this);
+		
+		this.statutController.getSourisPosX().textProperty().bind(this.precX.asString());
+		this.statutController.getSourisPosY().textProperty().bind(this.precY.asString());
+		this.statutController.getCouleur().textProperty().bind(this.couleur.asString());
+		this.statutController.getEpaisseur().textProperty().bind(this.epaisseur.asString());
 	}
 	
 	// ------------ Gestion des évènements ------------
@@ -43,15 +49,15 @@ public class Controleur {
 	}
 	
 	public void onMousePressed(MouseEvent event) {
-		this.prevX.set(event.getX());
-		this.prevY.set(event.getY());
-		this.dessin.addFigure(new Trace(3, "noir", this.prevX.get(), this.prevY.get()));
+		this.precX.set(event.getX());
+		this.precY.set(event.getY());
+		this.dessin.addFigure(new Trace(3, "noir", this.precX.get(), this.precY.get()));
 	}
 	
 	public void onMouseDragged(MouseEvent event) {
 		this.dessinController.trace(
-				this.prevX.get(),
-				this.prevY.get(),
+				this.precX.get(),
+				this.precY.get(),
 				event.getX(),
 				event.getY()
 		);
@@ -59,26 +65,18 @@ public class Controleur {
 		Figure figure = this.dessin.getFigures().get(this.dessin.getFigures().size()-1);
 		figure.addPoint(event.getX(), event.getY());
 		
-		this.prevX.set(event.getX());
-		this.prevY.set(event.getY());
+		this.precX.set(event.getX());
+		this.precY.set(event.getY());
 	}
 	
 	public void onMouseMoved(MouseEvent event) {
-		this.prevX.set(event.getX());
-		this.prevY.set(event.getY());
+		this.precX.set(event.getX());
+		this.precY.set(event.getY());
 	}
 
 }
 
 /*
-this.sourisPosX.textProperty().bind(this.prevX.asString());
-this.sourisPosY.textProperty().bind(this.prevY.asString());
-*/
-
-/*
-
-
-
 
 Figure figure = this.dessin.getFigures().get(this.dessin.getFigures().size()-1);
 figure.addPoint(event.getX(), event.getY());
