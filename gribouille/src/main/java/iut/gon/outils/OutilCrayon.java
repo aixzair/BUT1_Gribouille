@@ -3,6 +3,7 @@ package iut.gon.outils;
 import iut.gon.controleurs.Controleur;
 import iut.gon.modele.Figure;
 import iut.gon.modele.Trace;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.MouseEvent;
 
 public class OutilCrayon
@@ -11,6 +12,8 @@ extends Outils {
 	public OutilCrayon(Controleur _controleur) {
 		super(_controleur);
 	}
+	
+	// -------------- Evenement --------------
 	
 	@Override
 	public void onMousePressed(MouseEvent event) {

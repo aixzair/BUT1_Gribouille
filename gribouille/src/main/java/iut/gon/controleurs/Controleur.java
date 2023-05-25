@@ -1,7 +1,11 @@
 package iut.gon.controleurs;
 
+import java.util.List;
+
 import iut.gon.gribouille.Dialogues;
 import iut.gon.modele.Dessin;
+import iut.gon.modele.Figure;
+import iut.gon.modele.Point;
 import iut.gon.outils.OutilCrayon;
 import iut.gon.outils.OutilEtoile;
 import iut.gon.outils.Outils;
@@ -39,12 +43,60 @@ public class Controleur {
 		
 		this.statutController.getSourisPosX().textProperty().bind(this.precX.asString());
 		this.statutController.getSourisPosY().textProperty().bind(this.precY.asString());
-		this.statutController.getCouleur().textProperty().bind(this.couleur.asString());
 		this.statutController.getEpaisseur().textProperty().bind(this.epaisseur.asString());
+		this.statutController.getOutil().setText("crayon");
+		this.statutController.getCouleur().textProperty().bind(this.couleur.asString());
+	}
+	
+	public Outils getOutils() {
+		return this.outils;
 	}
 	
 	public ControleurDessin getDessinController() {
 		return this.dessinController;
+	}
+	
+	public ControleurStatut getStatutController() {
+		return this.statutController;
+	}
+	
+	public void onCrayon() {
+		this.outils = new OutilCrayon(this);
+	}
+	
+	public void onEtoile() {
+		this.outils = new OutilEtoile(this);
+	}
+	
+	public void dessine() {
+		this.dessinController.getCanvas().widthProperty().addListener((objet) -> {
+			for (Figure figure: this.dessin.getFigures()) {
+				List<Point> points = figure.getPoints();
+				
+				for (int i = 0; i < points.size() - 1; i++) {
+					this.dessinController.getCanvas().getGraphicsContext2D().strokeLine(
+						points.get(i).getX(),
+						points.get(i).getY(),
+						points.get(i+1).getX(),
+						points.get(i+1).getY()
+					);
+				}
+			}
+		});
+		this.dessinController.getCanvas().heightProperty().addListener((objet) -> {
+			for (Figure figure: this.dessin.getFigures()) {
+				List<Point> points = figure.getPoints();
+				
+				for (int i = 0; i < points.size() - 1; i++) {
+					this.dessinController.getCanvas().getGraphicsContext2D().strokeLine(
+						points.get(i).getX(),
+						points.get(i).getY(),
+						points.get(i+1).getX(),
+						points.get(i+1).getY()
+					);
+				}
+			}
+		});
 	}
 	
 	// ------------ Gestion des évènements ------------
@@ -67,18 +119,3 @@ public class Controleur {
 	}
 
 }
-
-/*
-
-Figure figure = this.dessin.getFigures().get(this.dessin.getFigures().size()-1);
-figure.addPoint(event.getX(), event.getY());
-
-this.prevX.set(event.getX());
-this.prevY.set(event.getY());
-}
-
-public void onMouseMoved(MouseEvent event) {
-this.prevX.set(event.getX());
-this.prevY.set(event.getY());
-}
-*/

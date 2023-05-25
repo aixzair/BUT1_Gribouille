@@ -3,7 +3,7 @@ package iut.gon.outils;
 import iut.gon.controleurs.Controleur;
 import iut.gon.modele.Etoile;
 import iut.gon.modele.Figure;
-import iut.gon.modele.Trace;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.input.MouseEvent;
 
 public class OutilEtoile
@@ -12,6 +12,8 @@ extends Outils {
 	public OutilEtoile(Controleur _controleur) {
 		super(_controleur);
 	}
+	
+	// -------------- Evenement --------------
 	
 	public void onMousePressed(MouseEvent event) {
 		super.controleur.dessin.addFigure( new Etoile(

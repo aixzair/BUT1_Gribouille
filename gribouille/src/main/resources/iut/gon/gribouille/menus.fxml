@@ -38,7 +38,7 @@
                   <RadioMenuItem mnemonicParsing="false" text="9" toggleGroup="$epaisseur" />
                </items>
             </Menu>
-            <RadioMenuItem fx:id="crayon" mnemonicParsing="false" text="Crayon">
+            <RadioMenuItem fx:id="crayon" mnemonicParsing="false" selected="true" text="Crayon">
                <toggleGroup>
                   <ToggleGroup fx:id="outils" />
                </toggleGroup>

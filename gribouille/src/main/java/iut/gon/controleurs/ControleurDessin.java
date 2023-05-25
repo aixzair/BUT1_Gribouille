@@ -25,43 +25,16 @@ public class ControleurDessin {
 		this.canvas.widthProperty().bind(this.pane.widthProperty());
 		this.canvas.heightProperty().bind(this.pane.heightProperty());
 		
-		this.dessine();
+		this.controleur.dessine();
+	}
+	
+	public Canvas getCanvas() {
+		return this.canvas;
 	}
 	
 	public void setParams(Controleur _controleur, Dessin _modele) {
 		this.controleur = _controleur;
 		this.modele = _modele;
-	}
-	
-	public void dessine() {
-		this.canvas.widthProperty().addListener((objet) -> {
-			for (Figure figure: this.modele.getFigures()) {
-				List<Point> points = figure.getPoints();
-				
-				for (int i = 0; i < points.size() - 1; i++) {
-					this.canvas.getGraphicsContext2D().strokeLine(
-						points.get(i).getX(),
-						points.get(i).getY(),
-						points.get(i+1).getX(),
-						points.get(i+1).getY()
-					);
-				}
-			}
-		});
-		this.canvas.heightProperty().addListener((objet) -> {
-			for (Figure figure: this.modele.getFigures()) {
-				List<Point> points = figure.getPoints();
-				
-				for (int i = 0; i < points.size() - 1; i++) {
-					this.canvas.getGraphicsContext2D().strokeLine(
-						points.get(i).getX(),
-						points.get(i).getY(),
-						points.get(i+1).getX(),
-						points.get(i+1).getY()
-					);
-				}
-			}
-		});
 	}
 	
 	public void efface() {
