@@ -10,26 +10,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import iut.gon.controleurs.Controleur;
 import iut.gon.modele.Dessin;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
     private static Scene scene;
-    private double prevX;
-    private double prevY;
-
+    
     @Override
     public void start(Stage stage) throws IOException {
-    	Dessin dessinMdl = new Dessin();
-    	ControleurDessin dessinCtl = new ControleurDessin(dessinMdl);
+    	Dessin modele = new Dessin();
+    	Controleur controleur = new Controleur(modele);
     	
-        scene = new Scene(loadFXML("dessin", dessinCtl), 640, 480);
+        scene = new Scene(loadFXML("Gribouille", controleur), 640, 480);
         stage.setScene(scene);
-        stage.setOnCloseRequest(event -> {
-        	if (!Dialogues.confirmation("Voulez-vous quitter l'application ?")) {
+        stage.setOnCloseRequest( event -> {
+        	if (controleur.onQuitter()) {
         		event.consume();
         	}
         });
