@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox fx:id="couleurs" fx:controller="iut.gon.controleurs.controleurCouleurs" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" minWidth="120.0" prefHeight="200.0" prefWidth="130.0" style="-fx-background-color: lightgray;" BorderPane.alignment="TOP_CENTER">
+<VBox fx:id="couleurs" fx:controller="iut.gon.controleurs.ControleurCouleurs" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" minWidth="120.0" prefHeight="200.0" prefWidth="130.0" style="-fx-background-color: lightgray;" BorderPane.alignment="TOP_CENTER">
    <children>
       <ColorPicker fx:id="dessinColorPicker" />
       <TilePane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="250.0">

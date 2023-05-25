@@ -31,6 +31,6 @@
 	  <fx:include source="couleurs.fxml" fx:id="couleurs"/>
    </right>
    <center>
-      <fx:include source="dessin.fxml" fx:id="pane"/>
+      <fx:include source="dessin.fxml" fx:id="dessin"/>
    </center>
 </BorderPane>
