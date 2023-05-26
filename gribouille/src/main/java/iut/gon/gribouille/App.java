@@ -31,6 +31,9 @@ public class App extends Application {
         		event.consume();
         	}
         });
+        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        	controleur.onKeyPressed(event.getText());
+        });
         stage.show();
     }
 

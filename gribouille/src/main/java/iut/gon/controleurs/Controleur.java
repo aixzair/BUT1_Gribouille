@@ -19,6 +19,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -176,5 +177,80 @@ implements Initializable {
 	public void onMouseMoved(MouseEvent event) {
 		this.precX.set(event.getX());
 		this.precY.set(event.getY());
+	}
+	
+	public void onKeyPressed(String touche) {
+		switch (touche) {
+		case "&":
+		case "1":
+			this.setEpaisseur(1);
+		break;
+		
+		case "é":
+		case "2":
+			this.setEpaisseur(2);
+		break;
+		case "\"":
+		case "3":
+			this.setEpaisseur(3);
+		break;
+		
+		case "'":
+		case "4":
+			this.setEpaisseur(4);
+		break;
+		
+		case "(":
+		case "5":
+			this.setEpaisseur(5);
+		break;
+		
+		case "-":
+		case "6":
+			this.setEpaisseur(6);
+		break;
+		
+		case "è":
+		case "7":
+			this.setEpaisseur(7);
+		break;
+		
+		case "_":
+		case "8":
+			this.setEpaisseur(8);
+		break;
+		
+		case "ç":
+		case "9":
+			this.setEpaisseur(9);
+			
+		break;
+		
+		case "c":
+			if (this.couleur.get().toString().equals(Color.RED.toString())) {
+				this.setCouleur(Color.GREEN);
+			} else if (this.couleur.get().toString().equals(Color.GREEN.toString())) {
+				this.setCouleur(Color.DARKBLUE);
+			} else if (this.couleur.get().toString().equals(Color.DARKBLUE.toString())) {
+				this.setCouleur(Color.BLUE);
+			} else if (this.couleur.get().toString().equals(Color.BLUE.toString())) {
+				this.setCouleur(Color.PINK);
+			} else if (this.couleur.get().toString().equals(Color.PINK.toString())) {
+				this.setCouleur(Color.YELLOW);
+			} else if (this.couleur.get().toString().equals(Color.YELLOW.toString())) {
+				this.setCouleur(Color.BLACK);
+			} else if (this.couleur.get().toString().equals(Color.BLACK.toString())) {
+				this.setCouleur(Color.WHITE);
+			} else if (this.couleur.get().toString().equals(Color.WHITE.toString())) {
+				this.setCouleur(Color.RED);
+			} else {
+				this.setCouleur(Color.BLACK);
+			}
+		break;
+		
+		case "e":
+			this.setEpaisseur((this.getEpaisseur().get() % 9) + 1);
+		break;
+		}
 	}
 }
