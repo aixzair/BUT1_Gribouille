@@ -36,6 +36,10 @@ public class ControleurDessin {
 		this.controleur.dessine();
 	}
 	
+	public void setEpaisseur(int epaisseur) {
+		this.canvas.getGraphicsContext2D().setLineWidth(epaisseur);
+	}
+	
 	public void efface() {
 		this.canvas.getGraphicsContext2D().clearRect(
 			0,

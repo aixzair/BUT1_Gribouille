@@ -26,7 +26,7 @@ public class Controleur {
 	private Outils outils = new OutilCrayon(this);
         
 	public final SimpleObjectProperty<Color> couleur = new SimpleObjectProperty<Color>(Color.BLACK);
-	public final SimpleIntegerProperty epaisseur = new SimpleIntegerProperty(1);
+	private final SimpleIntegerProperty epaisseur = new SimpleIntegerProperty(1);
 	
 	private @FXML ControleurCouleurs couleursController;
 	private @FXML ControleurDessin dessinController;
@@ -60,6 +60,15 @@ public class Controleur {
 	
 	public ControleurStatut getStatutController() {
 		return this.statutController;
+	}
+	
+	public SimpleIntegerProperty getEpaisseur() {
+		return this.epaisseur;
+	}
+	
+	public void setEpaisseur(int _epaisseur) {
+		this.epaisseur.set(_epaisseur);
+		this.dessinController.setEpaisseur(_epaisseur);
 	}
 	
 	public void onCrayon() {

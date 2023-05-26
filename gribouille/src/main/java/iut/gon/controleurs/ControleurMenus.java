@@ -1,8 +1,11 @@
 package iut.gon.controleurs;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
 public class ControleurMenus {
@@ -11,6 +14,7 @@ public class ControleurMenus {
 	private @FXML ToggleGroup outils;
 	private @FXML RadioMenuItem crayon;
 	private @FXML RadioMenuItem etoile;
+	private @FXML ToggleGroup groupe_epaisseur;
 
 	public ControleurMenus() {
 		// Vide.
@@ -26,6 +30,15 @@ public class ControleurMenus {
 	        	this.controleur.getStatutController().getOutil().setText("étoile");
 	        }
 		});
+		
+		this.groupe_epaisseur.selectedToggleProperty().addListener(new ChangeListener<>() {
+			@Override
+			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+				controleur.setEpaisseur(newValue.getUserData().toString().charAt(0) - '0');
+			}
+		});
+
+
 	}
 	
 	public void setParams(Controleur _controleur) {

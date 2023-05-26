@@ -17,7 +17,7 @@ extends Outils {
 	
 	public void onMousePressed(MouseEvent event) {
 		super.controleur.dessin.addFigure( new Etoile(
-			super.controleur.epaisseur.get(),
+			super.controleur.getEpaisseur().get(),
 			super.controleur.couleur.toString(),
 			super.controleur.precX.doubleValue(),
 			super.controleur.precY.doubleValue()
