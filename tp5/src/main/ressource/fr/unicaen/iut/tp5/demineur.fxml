@@ -9,9 +9,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -25,15 +25,15 @@
                     <MenuItem mnemonicParsing="false" text="Quitter" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Difficulté">
+                <Menu fx:id="difficulte" mnemonicParsing="false" text="Difficulté">
                      <items>
-                        <RadioMenuItem mnemonicParsing="false" text="Facile" userData="10;10;10">
+                        <RadioMenuItem fx:id="facile" mnemonicParsing="false" selected="true" text="Facile" userData="10;10;10">
                            <toggleGroup>
                               <ToggleGroup fx:id="difficulte" />
                            </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem mnemonicParsing="false" text="Moyen" toggleGroup="$difficulte" userData="20;20;50" />
-                        <RadioMenuItem mnemonicParsing="false" text="Difficile" toggleGroup="$difficulte" userData="30;20;100" />
+                        <RadioMenuItem fx:id="moyen" mnemonicParsing="false" text="Moyen" toggleGroup="$difficulte" userData="20;20;50" />
+                        <RadioMenuItem fx:id="difficile" mnemonicParsing="false" text="Difficile" toggleGroup="$difficulte" userData="30;20;100" />
                      </items>
                 </Menu>
               </menus>
@@ -56,11 +56,9 @@
    </bottom>
    <center>
       <GridPane fx:id="grille" alignment="CENTER" gridLinesVisible="true" BorderPane.alignment="CENTER">
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
       </GridPane>
    </center>
 </BorderPane>
