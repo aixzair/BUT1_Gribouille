@@ -20,7 +20,12 @@ extends Outils {
 		super.controleur.precX.set(event.getX());
 		super.controleur.precY.set(event.getY());
 		super.controleur.dessin.addFigure(
-			new Trace(3, "noir", super.controleur.precX.get(), this.controleur.precY.get())
+			new Trace(
+				super.controleur.getEpaisseur().get(),
+				super.controleur.couleur.toString(),
+				super.controleur.precX.get(),
+				this.controleur.precY.get()
+			)
 		);
 	}
 	
@@ -35,6 +40,7 @@ extends Outils {
 		
 		Figure figure = super.controleur.dessin.getFigures().get(super.controleur.dessin.getFigures().size()-1);
 		figure.addPoint(event.getX(), event.getY());
+		figure.changeCouleur(super.controleur.couleur.toString());
 		
 		super.controleur.precX.set(event.getX());
 		super.controleur.precY.set(event.getY());

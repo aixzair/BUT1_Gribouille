@@ -33,6 +33,7 @@ extends Outils {
 		);
 		
 		Figure figure = super.controleur.dessin.getFigures().get(super.controleur.dessin.getFigures().size()-1);
+		figure.changeCouleur(super.controleur.couleur.toString());
 		figure.addPoint(event.getX(), event.getY());
 	}
 

@@ -1,14 +1,19 @@
 package iut.gon.controleurs;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
-public class ControleurMenus {
+public class ControleurMenus
+implements Initializable {
 	private Controleur controleur;
 	
 	private @FXML ToggleGroup outils;
@@ -20,7 +25,8 @@ public class ControleurMenus {
 		// Vide.
 	}
 	
-	public void initialize() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		this.outils.selectedToggleProperty().addListener(observable -> {
 			if (crayon.isSelected()){
 	            this.controleur.onCrayon();

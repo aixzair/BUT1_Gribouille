@@ -1,9 +1,14 @@
 package iut.gon.controleurs;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class ControleurStatut {
+public class ControleurStatut
+implements Initializable {
 	private Controleur controleur;
 	
 	@FXML private Label sourisPosX;
@@ -14,6 +19,11 @@ public class ControleurStatut {
 
 	public ControleurStatut() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
 	}
 	
 	public void setParams(Controleur _controleur) {

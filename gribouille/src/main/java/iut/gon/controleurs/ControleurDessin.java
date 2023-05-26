@@ -1,16 +1,20 @@
 package iut.gon.controleurs;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import iut.gon.modele.Dessin;
 import iut.gon.modele.Figure;
 import iut.gon.modele.Point;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class ControleurDessin {
+public class ControleurDessin
+implements Initializable {
 	private Controleur controleur;
 	private Dessin modele;
 	
@@ -21,7 +25,8 @@ public class ControleurDessin {
 		// Vide.
 	}
 	
-	public void initialize() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		this.canvas.widthProperty().bind(this.pane.widthProperty());
 		this.canvas.heightProperty().bind(this.pane.heightProperty());
 	}

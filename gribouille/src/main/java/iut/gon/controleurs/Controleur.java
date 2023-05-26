@@ -1,6 +1,8 @@
 package iut.gon.controleurs;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import iut.gon.gribouille.Dialogues;
 import iut.gon.modele.Dessin;
@@ -11,14 +13,17 @@ import iut.gon.modele.Trace;
 import iut.gon.outils.OutilCrayon;
 import iut.gon.outils.OutilEtoile;
 import iut.gon.outils.Outils;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-public class Controleur {
+public class Controleur
+implements Initializable {
 	public final Dessin dessin;
 	public final SimpleDoubleProperty precX = new SimpleDoubleProperty();
 	public final SimpleDoubleProperty precY = new SimpleDoubleProperty();
@@ -37,14 +42,25 @@ public class Controleur {
 		this.dessin = _dessin;
 	}
 	
-	public void initialize() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		this.couleursController.setParams(this);
 		this.dessinController.setParams(this, this.dessin);
 		this.menusController.setParams(this);
 		this.statutController.setParams(this);
 		
-		this.statutController.getSourisPosX().textProperty().bind(this.precX.asString());
-		this.statutController.getSourisPosY().textProperty().bind(this.precY.asString());
+		this.statutController.getSourisPosX().textProperty().bind(
+			Bindings.createLongBinding(
+				() -> Math.round(this.precX.get()),
+				this.precX
+			).asString()
+		);
+		this.statutController.getSourisPosY().textProperty().bind(
+			Bindings.createLongBinding(
+				() -> Math.round(this.precY.get()),
+				this.precY
+			).asString()
+		);
 		this.statutController.getEpaisseur().textProperty().bind(this.epaisseur.asString());
 		this.statutController.getOutil().setText("crayon");
 		this.statutController.getCouleur().textProperty().bind(this.couleur.asString());
@@ -66,6 +82,11 @@ public class Controleur {
 		return this.epaisseur;
 	}
 	
+	public void setCouleur(Color _couleur) {
+		this.couleur.set(_couleur);
+		this.dessinController.getCanvas().getGraphicsContext2D().setStroke(_couleur);
+	}
+	
 	public void setEpaisseur(int _epaisseur) {
 		this.epaisseur.set(_epaisseur);
 		this.dessinController.setEpaisseur(_epaisseur);
@@ -83,6 +104,7 @@ public class Controleur {
 		this.dessinController.getCanvas().widthProperty().addListener((objet) -> {
 			for (Figure figure: this.dessin.getFigures()) {
 				List<Point> points = figure.getPoints();
+				this.setCouleur(Color.valueOf(figure.getCouleur()));
 				
 				if (figure instanceof Trace) {
 					for (int i = 0; i < points.size() - 1; i++) {
@@ -110,6 +132,7 @@ public class Controleur {
 		this.dessinController.getCanvas().heightProperty().addListener((objet) -> {
 			for (Figure figure: this.dessin.getFigures()) {
 				List<Point> points = figure.getPoints();
+				this.setCouleur(Color.valueOf(figure.getCouleur()));
 				
 				if (figure instanceof Trace) {
 					for (int i = 0; i < points.size() - 1; i++) {
@@ -154,5 +177,4 @@ public class Controleur {
 		this.precX.set(event.getX());
 		this.precY.set(event.getY());
 	}
-
 }
