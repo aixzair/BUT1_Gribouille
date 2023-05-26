@@ -251,6 +251,14 @@ implements Initializable {
 		case "e":
 			this.setEpaisseur((this.getEpaisseur().get() % 9) + 1);
 		break;
+		
+		case "o":
+			if (this.outils instanceof OutilCrayon) {
+				this.onEtoile();
+			} else if (this.outils instanceof OutilEtoile){
+				this.onCrayon();
+			}
+		break;
 		}
 	}
 }
