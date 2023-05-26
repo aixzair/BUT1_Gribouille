@@ -25,7 +25,7 @@
                     <MenuItem mnemonicParsing="false" text="Quitter" />
                   </items>
                 </Menu>
-                <Menu fx:id="difficulte" mnemonicParsing="false" text="Difficulté">
+                <Menu fx:id="menu_difficulte" mnemonicParsing="false" text="Difficulté">
                      <items>
                         <RadioMenuItem fx:id="facile" mnemonicParsing="false" selected="true" text="Facile" userData="10;10;10">
                            <toggleGroup>
