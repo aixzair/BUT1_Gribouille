@@ -47,6 +47,11 @@ public class FactureController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// this.fabrique1();
+		this.fabrique2();
+	}
+	
+	private void fabrique1() {
 		this.qte.setCellValueFactory(new PropertyValueFactory<>("qte"));
 		this.produit.setCellValueFactory(ligneProduitCellDataFeatures -> {
             return ligneProduitCellDataFeatures.getValue().produitProperty();
@@ -60,6 +65,27 @@ public class FactureController implements Initializable {
 		this.totalTTC.setCellValueFactory(ligneNumberCellDataFeatures -> {
 			return ligneNumberCellDataFeatures.getValue().totalTTCProperty();
         });
+	}
+	
+	private void fabrique2() {
+		this.qte.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		this.produit.setCellFactory(ChoiceBoxTableCell.forTableColumn(
+			FXCollections.observableList(FabriqueProduits.getProduits()))
+		);
+	}
+	
+	private String toString(Produit produit) {
+		return produit.getNom();
+	}
+	
+	private Produit fromString(List<Produit> produits, String nom) {
+		for (Produit produit : produits) {
+			if (produit.getNom() == nom) {
+				return produit;
+			}
+		}
+		
+		return null;
 	}
 	
 	public void onAjouter(ActionEvent actionEvent) {
