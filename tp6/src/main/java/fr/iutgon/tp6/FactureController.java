@@ -48,8 +48,18 @@ public class FactureController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.qte.setCellValueFactory(new PropertyValueFactory<>("qte"));
-		this.produit = Callback<TableColumn.CellDataFeatures<Ligne, Produit>, ObservableValue<Produit>>;
-		// new Callback<TableColumn.CellDataFeatures<Ligne, Produit>, ObservableValue<Produit>>[];
+		this.produit.setCellValueFactory(ligneProduitCellDataFeatures -> {
+            return ligneProduitCellDataFeatures.getValue().produitProperty();
+        });
+		this.prixUnitaire.setCellValueFactory(ligneNumberCellDataFeatures -> {
+            return Bindings.selectFloat(ligneNumberCellDataFeatures.getValue().produitProperty(), "prix");
+        });
+		this.totalHT.setCellValueFactory(ligneNumberCellDataFeatures -> {
+			return ligneNumberCellDataFeatures.getValue().totalHTProperty();
+        });
+		this.totalTTC.setCellValueFactory(ligneNumberCellDataFeatures -> {
+			return ligneNumberCellDataFeatures.getValue().totalTTCProperty();
+        });
 	}
 	
 	public void onAjouter(ActionEvent actionEvent) {
@@ -57,7 +67,7 @@ public class FactureController implements Initializable {
 		
 		this.table.getItems().add(
 			new Ligne(
-				random.nextInt(10000),
+				random.nextInt(100),
 				FabriqueProduits.getProduits().get(random.nextInt(FabriqueProduits.getProduits().size()))
 			)
 		);
