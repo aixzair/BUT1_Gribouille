@@ -190,6 +190,7 @@ implements Initializable {
 		case "2":
 			this.setEpaisseur(2);
 		break;
+		
 		case "\"":
 		case "3":
 			this.setEpaisseur(3);

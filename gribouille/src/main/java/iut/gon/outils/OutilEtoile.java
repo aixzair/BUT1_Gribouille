@@ -18,7 +18,7 @@ extends Outils {
 	public void onMousePressed(MouseEvent event) {
 		super.controleur.dessin.addFigure( new Etoile(
 			super.controleur.getEpaisseur().get(),
-			super.controleur.couleur.toString(),
+			super.controleur.couleur.get().toString(),
 			super.controleur.precX.doubleValue(),
 			super.controleur.precY.doubleValue()
 		));
@@ -33,7 +33,7 @@ extends Outils {
 		);
 		
 		Figure figure = super.controleur.dessin.getFigures().get(super.controleur.dessin.getFigures().size()-1);
-		figure.changeCouleur(super.controleur.couleur.toString());
+		figure.changeCouleur(super.controleur.couleur.get().toString());
 		figure.addPoint(event.getX(), event.getY());
 	}
 

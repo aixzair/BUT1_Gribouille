@@ -3,12 +3,9 @@
     <fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
     <fullyQualifiedTypeName name="javafx.scene.canvas.Canvas"/>
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleObjectProperty"/>
-    <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
-    <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
     <fullyQualifiedTypeName name="javafx.event.Event"/>
     <fullyQualifiedTypeName name="javafx.application.Platform"/>
-    <fullyQualifiedTypeName name="javafx.scene.input.MouseEvent"/>
     <fullyQualifiedTypeName name="iut.gon.modele.Figure"/>
     <fullyQualifiedTypeName name="iut.gon.modele.Dessin"/>
     <fullyQualifiedTypeName name="java.util.List"/>
@@ -18,10 +15,20 @@
     <fullyQualifiedTypeName name="iut.gon.gribouille.OutilCrayon"/>
     <fullyQualifiedTypeName name="javafx.scene.control.RadioMenuItem"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
-    <fullyQualifiedTypeName name="javafx.beans.value.ChangeListener"/>
     <fullyQualifiedTypeName name="iut.gon.outils.OutilCrayon"/>
     <fullyQualifiedTypeName name="iut.gon.outils.OutilEtoile"/>
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
     <fullyQualifiedTypeName name="iut.gon.modele.Trace"/>
     <fullyQualifiedTypeName name="iut.gon.modele.Etoile"/>
+    <fullyQualifiedTypeName name="javax.swing.event.ChangeListener"/>
+    <fullyQualifiedTypeName name="javafx.beans.value.ChangeListener"/>
+    <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.VBox"/>
+    <fullyQualifiedTypeName name="javafx.scene.input.MouseEvent"/>
+    <fullyQualifiedTypeName name="javafx.scene.shape.Rectangle"/>
+    <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
+    <fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
+    <fullyQualifiedTypeName name="javafx.beans.binding.Bindings"/>
+    <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
+    <fullyQualifiedTypeName name="javafx.scene.input.KeyEvent"/>
 </qualifiedTypeNameHistroy>
