@@ -171,7 +171,21 @@ implements Initializable {
 	// ------------ Gestion des évènements ------------
 	
 	public boolean onQuitter() {
-		return (!Dialogues.confirmation("Voulez-vous quitter l'application ?"));
+		if (!this.dessin.getEstModifie()) {
+			return true;
+		}
+		
+		byte reponse = Dialogues.confirmation();
+		
+		if (reponse == 1) {
+			return this.menusController.onSauvegarder();
+		} else if (reponse == 2) {
+			return true;
+		} else if (reponse == 3) {
+			return false;
+		} else {
+			return false;
+		}
 	}
 	
 	public void onMousePressed(MouseEvent event) {

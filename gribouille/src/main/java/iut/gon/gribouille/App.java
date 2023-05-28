@@ -29,7 +29,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("Gribouille", controleur), 640, 480);
         stage.setScene(scene);
         stage.setOnCloseRequest( event -> {
-        	if (controleur.onQuitter()) {
+        	if (!controleur.onQuitter()) {
         		event.consume();
         	}
         });

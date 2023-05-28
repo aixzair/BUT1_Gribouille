@@ -43,7 +43,7 @@ public class Dessin {
   /** Sauvegarde le dessin dans le fichier spécifié.
    *  Change le nom du dessin si succès.
    */
-  public void sauveSous(String nom) {
+  public boolean sauveSous(String nom) {
     try {
       File nouveauFichier = new File(nom);
       PrintWriter out = new PrintWriter(nouveauFichier);
@@ -52,8 +52,11 @@ public class Dessin {
       out.close();
       this.fichier.set(nouveauFichier);
       estModifie.set(false);
+      
+      return true;
     } catch (FileNotFoundException e) {
       e.printStackTrace();
+      return false;
     }
   }
   

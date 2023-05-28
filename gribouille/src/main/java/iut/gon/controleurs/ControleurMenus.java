@@ -60,16 +60,24 @@ implements Initializable {
 		}
 	}
 	
-	public void onSauvegarder() {
+	public boolean onSauvegarder() {
 		FileChooser choose = new FileChooser();
 		File file = choose.showSaveDialog(this.controleur.getStage());
-		this.controleur.dessin.sauveSous(file.getAbsolutePath());
+		
+		if (file == null) {
+			return false;
+		} else {
+			return this.controleur.dessin.sauveSous(file.getAbsolutePath());
+		}
 	}
 	
 	public void onCharger() {
 		FileChooser choose = new FileChooser();
 		File file = choose.showOpenDialog(this.controleur.getStage());
-		this.controleur.dessin.charge(file.getAbsolutePath());
+		
+		if (file != null) {
+			this.controleur.dessin.charge(file.getAbsolutePath());
+		}
 	}
 	
 	// ------------ Gestion des évènements ------------
