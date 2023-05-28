@@ -1,32 +1,24 @@
 package fr.iutgon.tp6;
 
+import fr.iutgon.tp6.modele.DoubleTableCell;
 import fr.iutgon.tp6.modele.FabriqueProduits;
 import fr.iutgon.tp6.modele.Ligne;
 import fr.iutgon.tp6.modele.Produit;
-import fr.iutgon.tp6.modele.SetColonne;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberExpression;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -50,11 +42,6 @@ public class FactureController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.fabrique1();
-		this.fabrique2();
-	}
-	
-	private void fabrique1() {
 		this.qte.setCellValueFactory(new PropertyValueFactory<>("qte"));
 		this.produit.setCellValueFactory(ligneProduitCellDataFeatures -> {
             return ligneProduitCellDataFeatures.getValue().produitProperty();
@@ -68,13 +55,15 @@ public class FactureController implements Initializable {
 		this.totalTTC.setCellValueFactory(ligneNumberCellDataFeatures -> {
 			return ligneNumberCellDataFeatures.getValue().totalTTCProperty();
         });
-	}
-	
-	private void fabrique2() {
+		
 		this.qte.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 		this.produit.setCellFactory(ChoiceBoxTableCell.forTableColumn(
 			FXCollections.observableList(FabriqueProduits.getProduits()))
 		);
+		this.prixUnitaire.setCellFactory(ligneNumberTabColumn -> new DoubleTableCell<Ligne>());
+		this.totalTTC.setCellFactory(ligneNumberTabColumn -> new DoubleTableCell<Ligne>());
+		this.totalHT.setCellFactory(ligneNumberTabColumn -> new DoubleTableCell<Ligne>());
+
 	}
 	
 	private String toString(Produit produit) {
@@ -93,7 +82,6 @@ public class FactureController implements Initializable {
 	
 	public void onAjouter(ActionEvent actionEvent) {
 		Random random = new Random();
-		SetColonne setCol = new SetColonne();
 		Ligne line = new Ligne(
 			random.nextInt(100),
 			FabriqueProduits.getProduits().get(random.nextInt(FabriqueProduits.getProduits().size()))
