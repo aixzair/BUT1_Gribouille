@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class ControleurMenus
 implements Initializable {
 	private Controleur controleur;
-	
+
 	private @FXML ToggleGroup outils;
 	private @FXML RadioMenuItem crayon;
 	private @FXML RadioMenuItem etoile;
@@ -64,6 +64,12 @@ implements Initializable {
 		FileChooser choose = new FileChooser();
 		File file = choose.showSaveDialog(this.controleur.getStage());
 		this.controleur.dessin.sauveSous(file.getAbsolutePath());
+	}
+	
+	public void onCharger() {
+		FileChooser choose = new FileChooser();
+		File file = choose.showOpenDialog(this.controleur.getStage());
+		this.controleur.dessin.charge(file.getAbsolutePath());
 	}
 	
 	// ------------ Gestion des évènements ------------

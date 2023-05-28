@@ -47,6 +47,7 @@ public class Dessin {
     try {
       File nouveauFichier = new File(nom);
       PrintWriter out = new PrintWriter(nouveauFichier);
+      this.nomDuFichier.set(nouveauFichier.getName());
       figures.forEach(f->f.sauve(out));
       out.close();
       this.fichier.set(nouveauFichier);
@@ -62,6 +63,7 @@ public class Dessin {
    */
   public void charge(String nom) {
     File nouveauFichier = new File(nom);
+    this.nomDuFichier.set(nouveauFichier.getName());
     if (nouveauFichier.exists() && nouveauFichier.canRead()) {
       figures.clear();
       try {

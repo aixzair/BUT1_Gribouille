@@ -2,6 +2,7 @@ package iut.gon.gribouille;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ObservableStringValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,8 +27,6 @@ public class App extends Application {
     	Controleur controleur = new Controleur(modele, stage);
     	
         scene = new Scene(loadFXML("Gribouille", controleur), 640, 480);
-       
-        stage.setTitle("Sans nom");
         stage.setScene(scene);
         stage.setOnCloseRequest( event -> {
         	if (controleur.onQuitter()) {
@@ -38,13 +37,11 @@ public class App extends Application {
         	controleur.onKeyPressed(event.getText());
         });
         stage.show();
-        
-        Bindings.concat("*", stage.getTitle());
-        
-        //Bindings.createStringBinding(stage.getTitle(), stage.getTitle());
-        
-        /* Bindings.when(modele.estModifieProperty())
-		.then(stage.setTitle('*' + titre));*/
+        stage.titleProperty().bind(
+		    Bindings.when(modele.estModifieProperty())
+					.then(Bindings.concat("*",  modele.nomDuFichierProperty()))
+					.otherwise(modele.nomDuFichierProperty())
+		);
     }
 
     static void setRoot(String fxml) throws IOException {
