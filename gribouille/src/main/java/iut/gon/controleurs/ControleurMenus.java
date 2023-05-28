@@ -1,5 +1,6 @@
 package iut.gon.controleurs;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.FileChooser;
 
 public class ControleurMenus
 implements Initializable {
@@ -55,6 +57,13 @@ implements Initializable {
 		if (this.controleur.onQuitter()) {
 			Platform.exit();
 		}
+	}
+	
+	public void onSauvegarder() {
+		FileChooser choose = new FileChooser();
+		File file = choose.getInitialDirectory();
+		
+		this.controleur.dessin.sauveSous(file.getAbsolutePath());
 	}
 	
 	// ------------ Gestion des évènements ------------
