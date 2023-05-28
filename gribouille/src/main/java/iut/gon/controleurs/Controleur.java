@@ -22,10 +22,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class Controleur
 implements Initializable {
 	public final Dessin dessin;
+	private Stage stage;
+	
 	public final SimpleDoubleProperty precX = new SimpleDoubleProperty();
 	public final SimpleDoubleProperty precY = new SimpleDoubleProperty();
 	
@@ -39,8 +42,13 @@ implements Initializable {
 	private @FXML ControleurMenus menusController;
 	private @FXML ControleurStatut statutController;
 
-	public Controleur(Dessin _dessin) {
+	public Controleur(Dessin _dessin, Stage _stage) {
 		this.dessin = _dessin;
+		this.stage = _stage;
+	}
+	
+	public Stage getStage() {
+		return this.stage;
 	}
 	
 	@Override
@@ -163,7 +171,21 @@ implements Initializable {
 	// ------------ Gestion des évènements ------------
 	
 	public boolean onQuitter() {
-		return (!Dialogues.confirmation("Voulez-vous quitter l'application ?"));
+		if (!this.dessin.getEstModifie()) {
+			return true;
+		}
+		
+		byte reponse = Dialogues.confirmation();
+		
+		if (reponse == 1) {
+			return this.menusController.onSauvegarder();
+		} else if (reponse == 2) {
+			return true;
+		} else if (reponse == 3) {
+			return false;
+		} else {
+			return false;
+		}
 	}
 	
 	public void onMousePressed(MouseEvent event) {

@@ -10,17 +10,30 @@ public class Dialogues {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static boolean confirmation(String message) {
+	/*
+	 * @return :
+	 *	 - 0 : erreur.
+	 *   - 1 : sauvegarder.
+	 *   - 2 : ne pas sauvegarder.
+	 *   - 3 : annuler.
+	 */
+	public static byte confirmation() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
     	
-    	alert.setContentText(message);
+    	alert.setContentText("Voulez-vous sauvegarder avant de quitter l'application ?");
     	alert.getButtonTypes().clear();
-    	alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+    	alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
     	
-    	if (alert.showAndWait().orElse(ButtonType.YES) == ButtonType.YES) {
-    		return true;
+    	ButtonType bouton = alert.showAndWait().get();
+    	
+    	if (bouton == ButtonType.YES) {
+    		return 1;
+    	} else if (bouton == ButtonType.NO) {
+    		return 2;
+    	} else if (bouton == ButtonType.CANCEL) {
+    		return 3;
     	} else {
-    		return false;
+    		return 0;
     	}
 	}
 

@@ -1,5 +1,6 @@
 package iut.gon.controleurs;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,11 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ControleurMenus
 implements Initializable {
 	private Controleur controleur;
-	
+
 	private @FXML ToggleGroup outils;
 	private @FXML RadioMenuItem crayon;
 	private @FXML RadioMenuItem etoile;
@@ -54,6 +57,26 @@ implements Initializable {
 	public void onQuitte() {
 		if (this.controleur.onQuitter()) {
 			Platform.exit();
+		}
+	}
+	
+	public boolean onSauvegarder() {
+		FileChooser choose = new FileChooser();
+		File file = choose.showSaveDialog(this.controleur.getStage());
+		
+		if (file == null) {
+			return false;
+		} else {
+			return this.controleur.dessin.sauveSous(file.getAbsolutePath());
+		}
+	}
+	
+	public void onCharger() {
+		FileChooser choose = new FileChooser();
+		File file = choose.showOpenDialog(this.controleur.getStage());
+		
+		if (file != null) {
+			this.controleur.dessin.charge(file.getAbsolutePath());
 		}
 	}
 	
