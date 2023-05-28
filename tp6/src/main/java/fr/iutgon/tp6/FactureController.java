@@ -3,9 +3,11 @@ package fr.iutgon.tp6;
 import fr.iutgon.tp6.modele.FabriqueProduits;
 import fr.iutgon.tp6.modele.Ligne;
 import fr.iutgon.tp6.modele.Produit;
+import fr.iutgon.tp6.modele.SetColonne;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberExpression;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +39,7 @@ public class FactureController implements Initializable {
 	public TableColumn<Ligne, Number> totalHT;
 	public TableColumn<Ligne, Number> totalTTC;
 	public TextField sommeFacture;
+	private NumberExpression sommeFactureBis = new SimpleDoubleProperty(0); 
 	
 	/**
 	 Called to initialize a controller after its root element has been completely processed.
@@ -47,7 +50,7 @@ public class FactureController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// this.fabrique1();
+		this.fabrique1();
 		this.fabrique2();
 	}
 	
@@ -90,12 +93,17 @@ public class FactureController implements Initializable {
 	
 	public void onAjouter(ActionEvent actionEvent) {
 		Random random = new Random();
-		
-		this.table.getItems().add(
-			new Ligne(
-				random.nextInt(100),
-				FabriqueProduits.getProduits().get(random.nextInt(FabriqueProduits.getProduits().size()))
-			)
+		SetColonne setCol = new SetColonne();
+		Ligne line = new Ligne(
+			random.nextInt(100),
+			FabriqueProduits.getProduits().get(random.nextInt(FabriqueProduits.getProduits().size()))
 		);
+		
+		this.table.getItems().add(line);
+		this.sommeFactureBis = Bindings.add(
+			this.sommeFactureBis,
+			line.getTotalTTC().doubleValue()
+		);
+		this.sommeFacture.textProperty().bind(this.sommeFactureBis.asString());
 	}
 }
