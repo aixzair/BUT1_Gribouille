@@ -13,6 +13,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ControleurMenus
 implements Initializable {
@@ -61,8 +62,7 @@ implements Initializable {
 	
 	public void onSauvegarder() {
 		FileChooser choose = new FileChooser();
-		File file = choose.getInitialDirectory();
-		
+		File file = choose.showSaveDialog(this.controleur.getStage());
 		this.controleur.dessin.sauveSous(file.getAbsolutePath());
 	}
 	
